@@ -3,7 +3,7 @@ include_once('./_common.php');
 header('Content-Type: application/json; charset=utf-8');  // UTF-8 헤더 설정
 sql_connect('localhost', 'myai', 'whdals7721!', 'myai');
 
-$sql = "SELECT * FROM convgpt WHERE id = '{$member['mb_id']}'";
+$sql = "SELECT * FROM convgpt WHERE id = '{$member['mb_id']}' AND convorder = {Select convorder FROM convgpt ORDER BY convorder ASC LIMIT 1}";
 
 $result = sql_query($sql, false);
 $data = array();
