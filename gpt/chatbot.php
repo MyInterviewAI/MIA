@@ -2,6 +2,11 @@
 include_once('./_common.php');
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
+
+sql_connect('localhost', 'myai', 'whdals7721!', 'myai');
+$sql = "SELECT convorder FROM convgpt WHERE id = '{$member['mb_id']}' ORDER BY convorder DESC LIMIT 1";
+
+$result = sql_query($sql, false) + 1;
 ?>
 
 
@@ -212,9 +217,10 @@ userInput.addEventListener('keydown', (event) => {
 
 function sendData(route ,var1, var2) {
     var xhr = new XMLHttpRequest();
+    var var3 = '<?php echo $result; ?>';
     xhr.open('POST', route, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('var1=' + encodeURIComponent(var1) + '&var2=' +  encodeURIComponent(var2));
+    xhr.send('var1=' + encodeURIComponent(var1) + '&var2=' +  encodeURIComponent(var2) + '&var3=' +  encodeURIComponent(var3));
 }
 
 </script>

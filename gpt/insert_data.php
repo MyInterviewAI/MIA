@@ -5,6 +5,7 @@ header("Pragma: no-cache");
 if (isset($_POST['var1']) && isset($_POST['var2'])) {
     $message = $_POST['var1'];
     $aiResponse = $_POST['var2'];
+    $convorder = $_POST['var3'];
 } else {
     echo '데이터가 없습니다.';
 }
@@ -12,7 +13,7 @@ if (isset($_POST['var1']) && isset($_POST['var2'])) {
 sql_connect('localhost', 'myai', 'whdals7721!', 'myai');
 
 // MySQL 데이터베이스 연결
-$sql = "INSERT INTO convgpt (id, convnum, myconv, gptconv, convorder) VALUES ('{$member['mb_id']}', '', '{$message}', '{$aiResponse}', '')";
+$sql = "INSERT INTO convgpt (id, convnum, myconv, gptconv, convorder) VALUES ('{$member['mb_id']}', '', '{$message}', '{$aiResponse}', '{$convorder}')";
 sql_query($sql, false);
 
 ?>
